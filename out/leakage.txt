@@ -1,0 +1,13 @@
+Total Leakage Left,0.17786254686714736
+Total Leakage Right,0.003646079727161881
+Material 1 Leakage Left,0.08904936657443904
+Material 1 Leakage Right,0.0031512905185433495
+Material 2 Leakage Left,0.08881318029270834
+Material 2 Leakage Right,0.0004947892086185318
+Number of Ordinates,2
+Ordinate 1,-1.0
+Ordinate 2,1.0
+Weight 1,1.0
+Weight 2,1.0
+Total Leakage Ordinate 1,0.0889312734335733
+Total Leakage Ordinate 2,0.0018230398635809251
