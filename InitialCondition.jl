@@ -1,6 +1,6 @@
 #!/usr/bin/env julia
 
-# FluxProfile.jl
+# InitialCondition.jl
 
 include("Constants.jl")
 
@@ -28,6 +28,7 @@ function main()::Nothing
 
     # X values of flux for plotting
     local cell_vector::Vector{Float64} = linspace(0.0, Constants.thickness, Constants.num_cells)
+    local delta_x::Float64 = @fastmath Constants.thickness / (Constants.num_cells - 1)
 
     # Angular flux profiles
     local psi_vectors::Array{Float64, 2} = @fastmath fill(0.0, Constants.num_cells, Constants.num_materials * 2)
@@ -106,9 +107,9 @@ function main()::Nothing
         local x_value::Float64 = @inbounds cell_vector[i]
 
         # Solve the matrix exponential
-        local psi_results::Vector{Float64} = @inbounds @fastmath exp(multiplier_matrix * Constants.struct_thickness) * vec(psi_vectors[i - 1, :])
+        local psi_results::Vector{Float64} = @inbounds @fastmath exp(multiplier_matrix * delta_x) * vec(psi_vectors[i - 1, :])
         @inbounds psi_vectors[i, :] = deepcopy(psi_results)
-        @show psi_results
+        #@show psi_results
 
         # Compute phi from psi
         @inbounds phi_results[i, 1] = @fastmath (psi_results[1] + psi_results[2]) / prob[1]
